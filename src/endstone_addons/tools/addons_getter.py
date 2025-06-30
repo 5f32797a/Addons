@@ -11,9 +11,12 @@ def get_local_addons_to_add(plugin: Plugin):
         addons_paths = []
         for filename in os.listdir(PathProvider.addons()):
 
-            if ".mc" not in filename and ".zip" not  in filename:
+            # MODIFIED: Check for specific addon extensions for better accuracy.
+            if not filename.lower().endswith((".mcpack", ".mcaddon", ".zip")):
                 continue
 
+            # This part checks if an addon from the config is already present locally.
+            # No changes needed here.
             if any(filename.startswith(addon["name"]) for addon in storage.conf.get("addons", [])):
                 continue
 

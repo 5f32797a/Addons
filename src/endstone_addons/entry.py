@@ -21,6 +21,8 @@ class AddonsPlugin(Plugin):
     def on_load(self):
         super().on_load()
 
+        storage.init()
+
         self.logger.info(f"\n{CF.AQUA}Addons processing started...\n")
         os.makedirs(PathProvider.addons(), exist_ok=True)
         os.makedirs(PathProvider.behavior_packs(), exist_ok=True)
