@@ -7,7 +7,7 @@ packages = ["src/endstone_addons"]
 
 [project]
 name = "endstone_addons"
-version = "0.1.0"
+version = "0.1.2"
 dependencies = [
     "ujson"
 ]
