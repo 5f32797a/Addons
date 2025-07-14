@@ -48,12 +48,12 @@ class AddonsPlugin(Plugin):
         cleaner.clean(self)
         
         # Update world packs configuration
-        pack_filler.fill_packs()
+        pack_filler.fill_packs(self)
 
         storage.save_processed()
         self.logger.info(f"\n{CF.GREEN}Addons processing completed.\n")
 
-        # Restart server only if addons were actually changed
-        if len(addons_paths_to_process) > 0:
+        # Restart server only if addons were actually changed and the option is enabled
+        if storage.conf.get("restart_on_update", True) and len(addons_paths_to_process) > 0:
             self.logger.info("Addon changes were detected. Shutting down server for changes to take effect.")
             self.server.shutdown()
